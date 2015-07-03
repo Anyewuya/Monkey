@@ -12,19 +12,54 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
-
-
+//    let wa: Dictionary = ["Language":"所有语言"]
+//    let defaults = NSUserDefaults.standardUserDefaults()
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        self.window = UIWindow.alloc()
+        
+        
+//        NSUserDefaults.standardUserDefaults().registerDefaults(wa as [NSObject :AnyObject])
+        
+        
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window!.backgroundColor = UIColor.whiteColor()
+        
+        self.window!.backgroundColor = UIColor.whiteColor()
+        
+        
+        var navUser = UINavigationController(rootViewController: UserViewController.alloc())
+        var navResp = UINavigationController(rootViewController: RespoViewController.alloc())
+        
+        navUser.navigationBar.tintColor = UIColor.yellowColor()
+//        navUser.navigationBar.titleTextAttributes = Dictionary()
+        navUser.tabBarItem.title = "User"
+        navUser.tabBarItem.image = UIImage(named: "user")
+        
+        navResp.tabBarItem.title = "Repositories"
+        navResp.tabBarItem.image = UIImage(named: "respo")
+
+        var vcArray: Array = [navUser, navResp]
         
         var tabBC: UITabBarController = UITabBarController.alloc()
+        tabBC.setViewControllers(vcArray, animated: true)
+    
+        var tabBar = tabBC.tabBar
+        /*
+        var tabBar0: UITabBarItem = tabBar.items![0] as! UITabBarItem
+        var tabBar1: UITabBarItem = tabBar.items![1] as! UITabBarItem
+        tabBar0.title = "User"
+        tabBar0.image = UIImage(named: "user")
         
-//        var userVC =
+        tabBar1.title = "Repositories"
+        tabBar1.image = UIImage(named: "respo")
+        */
+        tabBar.backgroundColor = UIColor.redColor()
         
-        tabBC.setViewControllers( , animated: true)
-        
+        self.window!.rootViewController = tabBC
+        self.window!.makeKeyAndVisible()
+        self.window!.makeKeyWindow()
         return true
     }
 
